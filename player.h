@@ -43,7 +43,7 @@ class Player : public Character {
     }
     healthCurrent = healthMax;
 
-    item blank();
+    item blank;
     for (int i = 0; i < 5; i++) {
       inventory[i] = blank;
     }
@@ -61,6 +61,10 @@ class Player : public Character {
   item* remove_item(int position) {
     item blank;
     inventory[position] = blank;
+    for (int i = position; i < 4; i++) {
+      inventory[i] = inventory[i + 1];
+    }
+    inventory[4] = blank;
     return inventory;
   }
   int find_item(item to_find) {
