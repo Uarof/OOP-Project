@@ -56,7 +56,7 @@ class Player : public Character {
  private:
   std::string name;
   std::string type;
-  item* inventory[5];
+  item inventory[5];
 
  public:
   void setName(std::string nameIn) { name = nameIn; }
@@ -90,6 +90,35 @@ class Player : public Character {
       luck = 3;
     }
     healthCurrent = healthMax;
+
+    item blank();
+    for (int i = 0; i < 5; i++) {
+      inventory[i] = blank;
+    }
+
+
+  }
+  item* add_item(item to_add) {
+    for (int i = 0; i < 5; i++) {
+      if (inventory[i].get_name() == "[Empty Slot]") {
+        inventory[i] = to_add;
+      }
+    }
+    return inventory;
+  }
+  item* remove_item(int position) {
+    item blank;
+    inventory[position] = blank;
+    return inventory;
+  }
+  int find_item(item to_find) {
+    int pos = 6; // 6 is an error code for the fucker ain't here
+    for (int i = 0; i < 5; i++) {
+      if (inventory[i].get_name() == to_find.get_name()) {
+        pos = i;
+      }
+    }
+    return pos;
   }
   std::string getGameSession() {
     std::string gameSession = "- " + name + " the " + type + " -";
@@ -135,7 +164,7 @@ class item {
   std::string name;
 
  public:
-  item() {name = " ";}
+  item() {name = "[Empty Slot]";}
   item(std::string name_in) {name = name_in;}
   void set_name(std::string name_in) {name = name_in;}
   std::string get_name() {return name;}
