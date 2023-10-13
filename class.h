@@ -91,7 +91,7 @@ class Player : public Character {
     }
     healthCurrent = healthMax;
 
-    item blank();
+    item blank;
     for (int i = 0; i < 5; i++) {
       inventory[i] = blank;
     }

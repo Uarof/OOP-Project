@@ -1,5 +1,9 @@
 #include "ui.h"
-#include "class.h"
+#include "character.h"
+#include "player.h"
+#include "goblin.h"
+#include "item.h"
+#include "potion.h"
 
 int main() {
   std::string* userInfo;
