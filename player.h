@@ -24,22 +24,22 @@ class Player : public Character {
       healthMax = 8;
       strength = 8;
       mana = 1;
-      luck = 5;
+      luck = 0.5;
     } else if (type == "Wizard") {
       healthMax = 8;
       strength = 4;
       mana = 8;
-      luck = 5;
+      luck = 0.5;
     } else if (type == "Rouge") {
       healthMax = 5;
       strength = 10;
       mana = 1;
-      luck = 3;
+      luck = 0.3;
     } else if (type == "Paladin") {
       healthMax = 10;
       strength = 4;
       mana = 6;
-      luck = 3;
+      luck = 0.3;
     }
     healthCurrent = healthMax;
 

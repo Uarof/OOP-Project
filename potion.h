@@ -30,7 +30,7 @@ class potion : public item {
     default:
      name = "Invalid Potion";
     }
-    if (reset_type = 1) {
+    if (reset_type == 1) {
      name = "Increase Max " + name;
     }
   }

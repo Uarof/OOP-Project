@@ -4,7 +4,7 @@
 #include "character.h"
 
 class Goblin : public Character {
- private:
+ protected:
   std::string name;
   int index;
 
@@ -33,6 +33,17 @@ class Goblin : public Character {
     mana = 2 * level;
     luck = 2 * level;
     isAlive = true;
+  }
+  virtual int enemy_attack() {
+    int damage = 0;
+    int lb = round(strength * 0.5);
+    int ub = round(strength * 1.5);
+    damage = rand() % (ub - lb + 1) + lb;
+    double hit = (rand() % 100) / 100;
+    if (hit >= luck) {
+      damage = 0;
+    }
+    return damage;
   }
 };
 

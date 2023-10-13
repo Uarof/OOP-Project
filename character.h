@@ -2,6 +2,7 @@
 #define CHARACTER_H
 #include <iostream>
 #include <string>
+#include <cmath>
 
 class Character {
  protected:
@@ -10,7 +11,7 @@ class Character {
   int healthCurrent;
   int strength;
   int mana;
-  int luck;
+  double luck;
   bool isAlive;
 
  public:
@@ -35,11 +36,15 @@ class Character {
   int getStrength() { return strength; }
   void setMana(int manaIn) { mana = manaIn; }
   int getMana() { return mana; }
-  void setLuck(int luckIn) { luck = luckIn; }
-  int getLuck() { return luck; }
+  void setLuck(double luckIn) { luck = luckIn; }
+  double getLuck() { return luck; }
   bool getIsAlive() { return isAlive; }
   void setIsAlive(bool isAliveIn) { isAlive = isAliveIn; }
 
+  void take_damage(int damage) {
+    healthCurrent -= damage;
+  }
+  
   void display_Health() {
     int length = this->getHealthCurrent();
     char hashArray[length];

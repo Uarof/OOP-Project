@@ -90,7 +90,7 @@ void path_number_to_string(int path) {
         }
     }
 
-    int three_choice(std::string choice_in) {
+    int choiceUpToSix(std::string choice_in, int amountOfChoices) {
         int output = 0;
         char char_choice;                                      //define char variable
         std::string string_choice = choice_in;                             //define string variable
@@ -104,10 +104,22 @@ void path_number_to_string(int path) {
             break;
         case ('3'):
             output = 3;
+            break;
+        case ('4'):
+            output = 4;
+            break;
+        case ('5'):
+            output = 5;
+            break;
+        case ('6'):
+            output = 6;
             break;  
         default:
             output = 0;
             break;
+        }
+        if (output > amountOfChoices) {
+            output = 0;
         }
     return output;
     }

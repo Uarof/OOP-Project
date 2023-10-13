@@ -3,6 +3,7 @@
 #include <string>
 #include <thread>
 
+#include "generation.h"
 #include "character.h"
 #include "player.h"
 #include "goblin.h"
@@ -273,6 +274,111 @@ void normalBattle(Player player, Goblin goblin) {
   if (std::cin.get() == '\n') {
     // terminal is cleared
     system("clear");
+  }
+}
+
+int chooseDifficulty() {
+  int playerDificultychoice = 0;
+  for (int i = 0; i < 1; i++) {
+    std::cout << "please enter dificutly" << std::endl;
+    std::cout << "(1) for Easy"<< std::endl;
+    std::cout << "(2) for Medium" << std::endl;
+    std::cout << "(3) for Hard" << std::endl;
+
+    std::string choice_in;
+    std::cin >> choice_in;                             //player input as a string
+    
+    if (choiceUpToSix(choice_in, 3) == 0) {
+        std::cout << "invalid input" << std::endl;
+        i--;
+    } else {
+        playerDificultychoice = choiceUpToSix(choice_in, 3);
+    }
+  }
+}
+
+int mapDisplayReturnEncouterTypeValue(int currentlevel) {
+  Generation stage[(currentlevel)];                        //creates either 
+  stage[currentlevel] = Generation(currentlevel);                           //this is the level changes each time we get to the top of the for loop
+  
+  srand (time(NULL));
+  int TwoOrThreePaths = std::rand() % 2;           
+  
+  int encounterValue = 0;
+
+  if (TwoOrThreePaths == 0) {
+      stage[currentlevel].displaymap(stage[currentlevel].get_path1(), stage[currentlevel].get_path2(), stage[currentlevel].get_path3());  //displays the map and takes the diferent paths for this iteration as imputs
+      std::cout << "Path 1 is "; 
+      path_number_to_string(stage[currentlevel].get_path1());
+      std::cout << "Path 2 is ";
+      path_number_to_string(stage[currentlevel].get_path2());
+      std::cout << "Path 3 is ";
+      path_number_to_string(stage[currentlevel].get_path3());
+      std::cout << std::endl;
+
+      for (int i = 0; i < 1; i++) {
+        std::cout << "what path would you like to choose?" << std::endl;
+        int pathChoice;
+        std::string choice_in;
+        std::cin >> choice_in;
+        if (choiceUpToSix(choice_in, 3) == 0) {
+          std::cout << "invalid input" << std::endl;
+          i--;
+        } else {
+          pathChoice = choiceUpToSix(choice_in, 3);
+        }
+        return pathChoice;
+          switch (pathChoice) {
+          case 1:
+            encounterValue = stage[currentlevel].get_path1();
+            break;
+          case 2:
+            encounterValue = stage[currentlevel].get_path2();
+            break;
+          case 3:
+            encounterValue = stage[currentlevel].get_path3();
+            break;                  
+          default:
+            encounterValue = stage[currentlevel].get_path1();
+            break;
+        }
+      return encounterValue;  
+      }
+  
+  } else {
+    stage[currentlevel].displaymap(stage[currentlevel].get_path1(), stage[currentlevel].get_path2());  //displays the map and takes the diferent paths for this iteration as imputs
+    std::cout << "Path 1 is "; 
+    path_number_to_string(stage[currentlevel].get_path1());
+    std::cout << "Path 2 is ";
+    path_number_to_string(stage[currentlevel].get_path2());       
+
+    for (int i = 0; i < 1; i++) {
+      std::cout << "what path would you like to choose?" << std::endl;
+      int pathChoice;
+      std::string choice_in;
+      std::cin >> choice_in;
+      if (choiceUpToSix(choice_in, 2) == 0) {
+        std::cout << "invalid input" << std::endl;
+        i--;
+      } else {
+        pathChoice = choiceUpToSix(choice_in, 3);
+        switch (pathChoice) {
+        case 1:
+          encounterValue = stage[currentlevel].get_path1();
+          break;
+        case 2:
+          encounterValue = stage[currentlevel].get_path2();
+          break;
+        case 3:
+          encounterValue = stage[currentlevel].get_path3();
+          break;                  
+        default:
+          encounterValue = stage[currentlevel].get_path1();
+          break;
+        }
+      }
+      return encounterValue;
+    }  
   }
 }
 
