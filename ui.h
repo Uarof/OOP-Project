@@ -3,7 +3,12 @@
 #include <string>
 #include <thread>
 
-#include "class.h"
+#include "character.h"
+#include "player.h"
+#include "goblin.h"
+#include "item.h"
+#include "potion.h"
+
 
 // GLOBAL VARIABLE
 // Game title, sourced from patorjk.com
