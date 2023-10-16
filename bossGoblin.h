@@ -13,7 +13,7 @@ class BossGoblin : public Goblin {
     name = "BFG";
     level = 10;
     healthMax = 100;
-    healthCurrent = 10;
+    healthCurrent = 100;
     strength = 10;
     mana = 10;
     luck = 10;

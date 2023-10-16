@@ -15,6 +15,7 @@
 #include "player.h"
 #include "potion.h"
 #include "printCentred.h"
+#include "inventoryselect.h"
 
 void Battle(Player* player, Goblin* goblin) {
   // records wheter a valid input has been given
@@ -122,7 +123,7 @@ void Battle(Player* player, Goblin* goblin) {
           case 5:
             std::cout << "\n" << userName << " reaches into their pouch...\n ";
             correctInput = true;
-            
+            printInventory(player);
             break;
 
           default:

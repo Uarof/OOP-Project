@@ -48,26 +48,25 @@ void itemSelect(Player* player) {
   int increase3 = rand() % (ub - lb + 1) + lb;
 
   int type1 = rand() % 3;
-  int type2 = rand() % 3;
-  int type3 = rand() % 3;
+  int type2 = round((rand() % 30) / 10);
+  int type3 = round((rand() % 300) / 100);
+
+  potion p1(1, type1, increase1); // the fixed health pot
+  potion p2(1, type2, increase2);
+  potion p3(1, type3, increase3);
 
   int healthPotRatio = 3;
   int isHealthPot = rand() % healthPotRatio; // 1/(healthPotRatio + 1) chance of no health restore potion
   if (isHealthPot > healthPotRatio - 1) {
-    potion *p1 = new potion(0, 0, increase1); // the fixed health pot
-    potion *p2 = new potion(1, type2, increase2);
-    potion *p3 = new potion(1, type3, increase3);
-  } else {
-    potion *p1 = new potion(1, type1, increase1); // all random potions
-    potion *p2 = new potion(1, type2, increase2);
-    potion *p3 = new potion(1, type3, increase3);
+    p1.set_reset_type(0);
+    p1.set_attribute(0);
   }
 
   // item options are printed
   std::cout << "\nITEMS:\n";
-  std::cout << "1. " << p1->get_name() << "\n";
-  std::cout << "2. " << p2->get_name() << "\n";
-  std::cout << "3. " << p3->get_name() << "\n\n";
+  std::cout << "1. " << p1.get_name() << "\n";
+  std::cout << "2. " << p2.get_name() << "\n";
+  std::cout << "3. " << p3.get_name() << "\n\n";
 
   // accepts input and tests if input is valid or not
   // if the input is invalid, the user will be prompted again.
@@ -78,17 +77,17 @@ void itemSelect(Player* player) {
     std::cin >> selectedItem;
     switch (selectedItem) {
       case 1:
-        std::cout << "\n" << userName << " took the " << p1->get_name() << " and fled\n";
+        std::cout << "\n" << userName << " took the " << p1.get_name() << " and fled\n";
         player->add_item(p1);
         correctInput = true;
         break;
       case 2:
-        std::cout << "\n" << userName << " took the " << p2->get_name() << " and fled\n";
+        std::cout << "\n" << userName << " took the " << p2.get_name() << " and fled\n";
         player->add_item(p2);
         correctInput = true;
         break;
       case 3:
-        std::cout << "\n" << userName << " took the " << p3->get_name() << " and fled\n";
+        std::cout << "\n" << userName << " took the " << p3.get_name() << " and fled\n";
         player->add_item(p3);
         correctInput = true;
         break;

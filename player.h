@@ -3,6 +3,7 @@
 
 #include "character.h"
 #include "item.h"
+#include "potion.h"
 #include "goblin.h"
 
 class Player : public Character {
@@ -53,6 +54,7 @@ class Player : public Character {
     for (int i = 0; i < 5; i++) {
       if (inventory[i].get_name() == "[Empty Slot]") {
         inventory[i] = to_add;
+        break;
       }
     }
     return inventory;

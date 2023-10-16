@@ -133,49 +133,49 @@ class Test {
     
     void testLevelGoblin() {
       Goblin Goblin(5);
-      if (character.getLevel() != 5) {
+      if (Goblin.getLevel() != 5) {
         std::cout << "test 1 failed" << std::endl;
       }
     }
 
     void testHealthMaxGoblin() {
       Goblin Goblin(5);
-      if (character.getHealth() != (2*5+1)) {
+      if (Goblin.getHealth() != (2*5+1)) {
         std::cout << "test 2 failed" << std::endl;
       }
     }
 
     void testHealthCurrentGoblin() {
       Goblin Goblin(5);
-      if (character.getHealthCurrent() != (2*5+1)) {
+      if (Goblin.getHealthCurrent() != (2*5+1)) {
         std::cout << "test 3 failed" << std::endl;
       }
     }
 
     void testStrengthGoblin() {
       Goblin Goblin(5);
-      if (character.getStrength() != (2*5+1)) {
+      if (Goblin.getStrength() != (2*5+1)) {
         std::cout << "test 4 failed" << std::endl;
       }
     }
 
     void testManaGoblin() {
       Goblin Goblin(5);
-      if (character.getMana() != (2*5+1)) {
+      if (Goblin.getMana() != (2*5+1)) {
         std::cout << "test 5 failed" << std::endl;
       }
     }
 
     void testLuckGoblin() {
       Goblin Goblin(5);
-      if (character.getLuck() != (2*5+1)) {
+      if (Goblin.getLuck() != (2*5+1)) {
         std::cout << "test 6 failed" << std::endl;
       }
     }
 
     void testIsAliveGoblin() {
       Goblin Goblin(5);
-      if (character.getIsAlive() != true) {
+      if (Goblin.getIsAlive() != true) {
         std::cout << "test 7 failed" << std::endl;
       }
     }
@@ -186,65 +186,97 @@ class Test {
     
     void testLevelBossGoblin() {
       BossGoblin BossGoblin();
-      if (character.getLevel() != 10) {
+      if (BossGoblin.getLevel() != 10) {
         std::cout << "test 1 failed" << std::endl;
       }
     }
 
     void testHealthMaxBossGoblin() {
       BossGoblin BossGoblin();
-      if (character.getHealth() != (2*5+1)) {
+      if (BossGoblin.getHealth() != 100) {
         std::cout << "test 2 failed" << std::endl;
       }
     }
 
     void testHealthCurrentBossGoblin() {
-      BossGoblin BossGoblin(5);
-      if (character.getHealthCurrent() != (2*5+1)) {
+      BossGoblin BossGoblin();
+      if (BossGoblin.getHealthCurrent() != (100)) {
         std::cout << "test 3 failed" << std::endl;
       }
     }
 
     void testStrengthBossGoblin() {
-      BossGoblin BossGoblin(5);
-      if (character.getStrength() != (2*5+1)) {
+      BossGoblin BossGoblin();
+      if (BossGoblin.getStrength() != (10)) {
         std::cout << "test 4 failed" << std::endl;
       }
     }
 
     void testManaBossGoblin() {
-      BossGoblin BossGoblin(5);
-      if (character.getMana() != (2*5+1)) {
+      BossGoblin BossGoblin();
+      if (BossGoblin.getMana() != (10)) {
         std::cout << "test 5 failed" << std::endl;
       }
     }
 
     void testLuckBossGoblin() {
-      BossGoblin BossGoblin(5);
-      if (character.getLuck() != (2*5+1)) {
+      BossGoblin BossGoblin();
+      if (BossGoblin.get_debuff_damage() != (10)) {
         std::cout << "test 6 failed" << std::endl;
       }
     }
 
-    void testIsAliveBossGoblin() {
-      BossGoblin BossGoblin(5);
-      if (character.getIsAlive() != true) {
+    void testLuckBossGoblin() {
+      BossGoblin BossGoblin();
+      if (BossGoblin.getLuck() != round(BossGoblin.getStrength() / 10)) {
         std::cout << "test 7 failed" << std::endl;
       }
     }
 
     void testIsAliveBossGoblin() {
-      BossGoblin BossGoblin(5);
-      if (character.getIsAlive() != true) {
-        std::cout << "test 7 failed" << std::endl;
+      BossGoblin BossGoblin();
+      if (BossGoblin.getIsAlive() != true) {
+        std::cout << "test 8 failed" << std::endl;
+      }
+    }
+
+    void testIsAliveBossGoblin() {
+      BossGoblin BossGoblin();
+      if (BossGoblin.getname() != "BFG") {
+        std::cout << "test 9 failed" << std::endl;
       }
     }
   }
-     
+
+  void TestPotions() {
+    std::cout << "this is the test for the Goblin class" << std::endl;
+    
+    void testPotionResettype() {
+      potion potion(0, 2, 5);
+      if (potion.get_reset_type() != 0) {
+        std::cout << "test 1 failed" << std::endl;
+      }
+    }
+    void testPotionAttribute() {
+      potion potion(0, 2, 5);
+      if (potion.get_reset_type() != 2) {
+        std::cout << "test 2 failed" << std::endl;
+      }
+    }
+    void testPotionAttribute() {
+      potion potion(0, 2, 5);
+      if (potion.get_increase() != 5) {
+        std::cout << "test 2 failed" << std::endl;
+      }
+    }          
+  } 
+
  public:
   void runtests() { 
     testCharacter();
     testPlayer();
+    testGoblin();
     testBossGoblin();
+    TestPotions();
   }
 };

@@ -1,6 +1,7 @@
 #ifndef INTRO_H
 #define INTRO_H
 
+#include <algorithm>
 #include <chrono>
 #include <iostream>
 #include <string>
