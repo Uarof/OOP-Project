@@ -1,12 +1,4 @@
-#include <iostream>
-
-#include "character.h"
-#include "generation.h"
-#include "goblin.h"
-#include "item.h"
-#include "player.h"
-#include "potion.h"
-#include "ui.h"
+#include "files.h"
 
 int main() {
   // userInfo will store the pointer returned by gameIntro,
@@ -20,23 +12,22 @@ int main() {
   std::cout << gameTitle;
   std::string userName = userInfo[0];
   std::string userType = userInfo[1];
-  Player player(userName, userType);
-  Goblin* goblin;
+  Player* player = new Player(userName, userType);
   delete[] userInfo;
 
   bool gameDone = false;
   bool died = false;
-  bool finished = false;
+  bool gameWon = false;
 
   // then terminal is cleared
   system("clear");
-  
+
   std::cout << gameTitle;
   int difficulty = chooseDifficulty();
 
   int maxLevel = difficulty * 5;
   int currentLevel = 0;
-  Generation stage[(maxLevel)];  // creates either
+  // Generation stage[(maxLevel)];  // creates either
 
   // user is prompted to press enter to continue
   printCentred("-Press Enter to Continue-");
@@ -55,18 +46,26 @@ int main() {
   while (gameDone == false) {
     // then terminal is cleared
     system("clear");
+    std::cout << gameTitle;
+    std::cout << "\n";
+    printCentred(player->getGameSession());
 
-    int encouter = mapDisplayReturnEncouterTypeValue(currentLevel);
-    path_number_to_string(encouter);
+    if (currentLevel > maxLevel) {
+      executeEncounter(player, 3, currentLevel);
+    } else {
+      int encouter = createAndReturnPaths();
+      executeEncounter(player, encouter, currentLevel);
+    }
 
-    if (currentLevel > maxLevel || player.getIsAlive() == false) {
+    if (currentLevel > maxLevel &&
+        player->getIsAlive() == true) {  // win condition
+      gameWon = true;
       gameDone = true;
     }
-    if (gameDone && player.getIsAlive() == true) {
-      finished = true;
-    }
-    if (gameDone && player.getIsAlive() == false) {
+
+    if (player->getIsAlive() == false) {
       died = true;
+      gameDone = true;
     }
     currentLevel++;
   }
@@ -75,7 +74,8 @@ int main() {
     deathScreen();
   }
 
-  if (finished == true) {
+  if (gameWon == true) {
     finishScreen();
   }
+  delete player;
 }

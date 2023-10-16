@@ -2,6 +2,7 @@
 #define GOBLIN_H
 
 #include "character.h"
+#include <cmath>
 
 class Goblin : public Character {
  protected:
@@ -11,6 +12,8 @@ class Goblin : public Character {
  public:
   void setName(std::string nameIn) { name = nameIn; }
   std::string getName() { return name; }
+  Goblin() {}
+
   Goblin(int levelIn) {
     std::string nameOptions[50] = {
         "John",        "Mary",      "James",    "Sarah",    "Michael",
@@ -23,25 +26,27 @@ class Goblin : public Character {
         "Christina",   "Scott",     "Amy",      "Daniel",   "Susan",
         "Patrick",     "Karen",     "Timothy",  "Patricia", "Andrew",
         "Angela",      "Jonathan",  "Rachel",   "Eric",     "Michelle"};
-    srand(time(NULL));
-    index = std::rand() % 49;
+  
+    // srand((unsigned) time(NULL));
+    index = (rand()) % 49;
     name = nameOptions[index];
     level = levelIn;
-    healthMax = 2 * level;
-    healthCurrent = 2 * level;
-    strength = 2 * level;
-    mana = 2 * level;
-    luck = 2 * level;
+    healthMax = 2 * level + 1;
+    healthCurrent = 2 * level + 1;
+    strength = 2 * level + 1;
+    mana = 2 * level + 1;
+    luck = 2 * level + 1;
     isAlive = true;
   }
   virtual int enemy_attack() {
-    int damage = 0;
+    int damage = strength;
     int lb = round(strength * 0.5);
     int ub = round(strength * 1.5);
     damage = rand() % (ub - lb + 1) + lb;
     double hit = (rand() % 100) / 100;
     if (hit >= luck) {
       damage = 0;
+      return damage;
     }
     return damage;
   }
