@@ -38,7 +38,7 @@ class Goblin : public Character {
     luck = 2 * level + 1;
     isAlive = true;
   }
-  virtual int enemy_attack() {
+  virtual int enemyAttack() {
     int damage = strength;
     int lb = round(strength * 0.5);
     int ub = round(strength * 1.5);

@@ -51,6 +51,34 @@ int main() {
     printCentred(player->getGameSession());
 
     if (currentLevel > maxLevel) {
+      // BOSS
+      system("clear");
+      std::cout << gameTitle;
+      std::cout << "\n";
+      printCentred(player->getGameSession());
+      std::cout << "\n";
+      printCentred("BOSS\n");
+      printCentred("|");
+      printCentred("|");
+      printCentred("|\n");
+      printCentred("player\n");
+
+      printCentred("You have encounterd the boss Goblins");
+      printCentred("That's one Big F**cken Goblin!!!\n\n");
+
+      // user is prompted to press enter to continue
+      printCentred("-Press Enter to Continue-");
+
+      // the inputs of cleared, for compatibility
+      std::cin.clear();
+      std::fflush(stdin);
+
+      // if the user presses enter
+      if (std::cin.get() == '\n') {
+        // then terminal is cleared
+        system("clear");
+      }
+
       executeEncounter(player, 3, currentLevel);
     } else {
       int encouter = createAndReturnPaths();
@@ -68,6 +96,7 @@ int main() {
       gameDone = true;
     }
     currentLevel++;
+    player->setStage(currentLevel);
   }
 
   if (died == true) {

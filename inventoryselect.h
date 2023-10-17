@@ -19,45 +19,49 @@
 void printInventory(Player* player) {
   std::string selectedItem;
   int result = 0;
-  potion* inven = player->get_inventory();
+  item* inven = player->getInventory();
   std::cout << "\n< INVENTORY >\n";
   for (int i = 0; i < 5; i++) {
-    std::cout << i + 1 << ": " << (inven[i].get_name());
+    std::cout << i + 1 << ": " << (inven[i].getName());
     std::cout << std::endl;
   }
   
-  potion itemChoice = inven[result];
+  item itemChoice = inven[result];
   while (result == 0) {
-    std::cout << "Please select an Item (num)";
+    std::cout << "Please select an Item (num): ";
     std::cin >> selectedItem;
     result = choiceUpToSix(selectedItem, 5);
-    if (inven[result - 1].get_name() == "[Empty Slot]") {
+    if (inven[result - 1].getName() == "[Empty Slot]") {
       result = 0;
-      std::cout << "Invalid input";
+      std::cout << "Invalid input\n";
     }
   }
-  result =- 1;
+  result -= 1;
+  itemChoice = inven[result];
   
-  if (itemChoice.get_reset_type() == true && itemChoice.get_attribute() == 0) {
+  if (itemChoice.getResetType() == false && itemChoice.getAttribute() == 0) {
     player->setHealthCurrent(player->getHealth());
   } else {
-    int Att = itemChoice.get_attribute();
+    int Att = itemChoice.getAttribute();
     switch(Att) {
       case 0:
-        player->setHealth(itemChoice.get_increase());
-        player->remove_item(result);
+        std::cout << player->getHealth();
+        player->setHealth(itemChoice.getIncrease() + player->getHealth());
+        player->setHealthCurrent(player->getHealth());
+        std::cout << player->getHealth();
+        player->removeItem(result);
         break;
       case 1:
-        player->setStrength(itemChoice.get_increase());
-        player->remove_item(result);
+        player->setStrength(itemChoice.getIncrease() + player->getStrength());
+        player->removeItem(result);
         break;
       case 2:
-        player->setMana(itemChoice.get_increase());
-        player->remove_item(result);
+        player->setMana(itemChoice.getIncrease() + player->getMana());
+        player->removeItem(result);
         break;
       case 3:
-        player->setLuck(itemChoice.get_increase());
-        player->remove_item(result);
+        player->setLuck(itemChoice.getIncrease() + player->getLuck());
+        player->removeItem(result);
         break;
     }
   }

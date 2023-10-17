@@ -2,17 +2,20 @@
 #define PLAYER_H
 
 #include "character.h"
+#include "goblin.h"
 #include "item.h"
 #include "potion.h"
-#include "goblin.h"
 
 class Player : public Character {
  private:
   std::string name;
   std::string type;
-  potion inventory[5];
+  item inventory[5];
+  int stage;
 
  public:
+  void setStage(int stageIn) { stage = stageIn; }
+  int getStage() { return stage; }
   void setName(std::string nameIn) { name = nameIn; }
   std::string getName() { return name; }
   void setType(std::string typeIn) { type = typeIn; }
@@ -50,17 +53,17 @@ class Player : public Character {
       inventory[i] = blank;
     }
   }
-  potion* add_item(potion to_add) {
+  item* addItem(item toAdd) {
     for (int i = 0; i < 5; i++) {
-      if (inventory[i].get_name() == "[Empty Slot]") {
-        inventory[i] = to_add;
+      if (inventory[i].getName() == "[Empty Slot]") {
+        inventory[i] = toAdd;
         break;
       }
     }
     return inventory;
   }
-  potion* remove_item(int position) {
-    potion blank;
+  item* removeItem(int position) {
+    item blank;
     inventory[position] = blank;
     for (int i = position; i < 4; i++) {
       inventory[i] = inventory[i + 1];
@@ -68,24 +71,16 @@ class Player : public Character {
     inventory[4] = blank;
     return inventory;
   }
-  int find_item(potion to_find) {
-    int pos = 6;  // 6 is an error code for the fucker ain't here
-    for (int i = 0; i < 5; i++) {
-      if (inventory[i].get_name() == to_find.get_name()) {
-        pos = i;
-      }
-    }
-    return pos;
-  }
-  potion* get_inventory() {
-    return inventory;
-  }
+  
+  item* getInventory() { return inventory; }
   std::string getGameSession() {
-    std::string gameSession = "- " + name + " the " + type + " -";
+    std::string stageString = std::to_string(stage);
+    std::string gameSession =
+        "- " + name + " the " + type + ", stage: " + stageString + " -";
     return gameSession;
   }
 
-  void playerattack(Goblin* goblin, int attackpower) {
+  void playerAttack(Goblin* goblin, int attackpower) {
     std::cout << goblin->getName() << " the goblin took " << attackpower
               << " damage\n";
     int healthIn = goblin->getHealthCurrent() - attackpower;
@@ -94,10 +89,11 @@ class Player : public Character {
       goblin->setIsAlive(false);
       std::cout << "You defeated " << goblin->getName() << "!\n";
       std::cout << goblin->getName() << " perished!!\n";
-      healthMax = healthMax*1.5;
-      strength = strength*1.5;
-      mana = mana*1.5;
-      luck = luck*1.5;
+      healthMax+=2;
+      healthCurrent++;
+      strength = strength * 1.5;
+      mana = mana * 1.5;
+      luck = luck * 1.5;
       level++;
       std::cout << "You leveled up!!! ";
     }
@@ -105,7 +101,8 @@ class Player : public Character {
 
   void playerTakeDamage(int damage) {
     healthCurrent = healthCurrent - damage;
-    std::cout << name << " took " << damage << "!\n";
+    std::cout << std::endl;
+    std::cout << name << " took " << damage << " damage!\n";
     if (healthCurrent <= 0) {
       isAlive = false;
       std::cout << name << " perished!!\n";

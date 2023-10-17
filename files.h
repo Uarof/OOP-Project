@@ -8,7 +8,7 @@
 #include "character.h"
 #include "chooseDifficulty.h"
 #include "executeEncounter.h"
-#include "finishdeath.h"
+#include "finishDeath.h"
 #include "generation.h"
 #include "goblin.h"
 #include "intro.h"

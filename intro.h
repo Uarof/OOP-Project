@@ -270,7 +270,6 @@ std::string* gameIntro() {
   }
 
   // make characterName uppercase for aesthetics.
-  // MAY NEED TO BE CHANGED FOR ORIGINALITY
   std::transform(characterName.begin(), characterName.end(),
                  characterName.begin(), ::toupper);
 

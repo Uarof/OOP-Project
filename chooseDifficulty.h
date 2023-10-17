@@ -18,19 +18,19 @@
 int chooseDifficulty() {
   int playerDificultychoice = 0;
   for (int i = 0; i < 1; i++) {
-    std::cout << "please enter dificutly" << std::endl;
+    std::cout << "\nPlease enter dificutly" << std::endl;
     std::cout << "(1) for Easy" << std::endl;
     std::cout << "(2) for Medium" << std::endl;
-    std::cout << "(3) for Hard" << std::endl;
+    std::cout << "(3) for Hard\n" << std::endl;
 
-    std::string choice_in;
-    std::cin >> choice_in;  // player input as a string
+    std::string choiceIn;
+    std::cin >> choiceIn;  // player input as a string
 
-    if (choiceUpToSix(choice_in, 3) == 0) {
+    if (choiceUpToSix(choiceIn, 3) == 0) {
       std::cout << "invalid input" << std::endl;
       i--;
     } else {
-      playerDificultychoice = choiceUpToSix(choice_in, 3);
+      playerDificultychoice = choiceUpToSix(choiceIn, 3);
     }
   }
   return playerDificultychoice;

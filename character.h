@@ -42,11 +42,11 @@ class Character {
   bool getIsAlive() { return isAlive; }
   void setIsAlive(bool isAliveIn) { isAlive = isAliveIn; }
 
-  void take_damage(int damage) {
+  void takeDamage(int damage) {
     healthCurrent -= damage;
   }
   
-  void display_Health() {
+  void displayHealth() {
     for (int i = 0; i < this->healthCurrent; i++) {
       std::cout << "#";
     }

@@ -6,8 +6,8 @@
 
 class BossGoblin : public Goblin {
  private:
-  int debuff_damage;
-  int debuff_count;
+  int debuffDamage;
+  int debuffCount;
  public:
   BossGoblin() {
     name = "BFG";
@@ -18,16 +18,16 @@ class BossGoblin : public Goblin {
     mana = 10;
     luck = 10;
     isAlive = true;
-    debuff_damage = round(strength / 10);
+    debuffDamage = round(strength / 10);
 
-    debuff_count = 0;
+    debuffCount = 0;
     }
   
-  int enemy_attack() {
-    int damage = 0;
-    int spec_attack_chance = rand() % 100;
-    if (spec_attack_chance >= 80) {
-      debuff_count++;
+  int enemyAttack() {
+    int damage = 10;
+    int specAttackChance = rand() % 100;
+    if (specAttackChance >= 80) {
+      debuffCount++;
     } else {
       int damage = strength;
       int lb = round(strength * 0.5);
@@ -39,21 +39,21 @@ class BossGoblin : public Goblin {
       //   return damage;
       // }
     }
-    damage += debuff_count * debuff_damage;
+    damage += debuffCount * debuffDamage;
     return damage;
   }
 
-  void set_debuff_damage(int debuff_damage_in) {
-    debuff_damage = debuff_damage_in;
+  void setDebuffDamage(int debuffDamageIn) {
+    debuffDamage = debuffDamageIn;
   }
-  int get_debuff_damage() {
-    return debuff_damage;
+  int getDebuffDamage() {
+    return debuffDamage;
   }
-  void set_debuff_count(int debuff_count_in) {
-    debuff_count = debuff_count_in;
+  void setDebuffCount(int debuffCountIn) {
+    debuffCount = debuffCountIn;
   }
-  int get_debuff_count() {
-    return debuff_count;
+  int getDebuffCount() {
+    return debuffCount;
   }
 };
 

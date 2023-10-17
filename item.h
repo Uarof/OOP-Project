@@ -9,9 +9,16 @@ class item {
 
  public:
   item() {name = "[Empty Slot]";}
-  item(std::string name_in) {name = name_in;}
-  void set_name(std::string name_in) {name = name_in;}
-  std::string get_name() {return name;}
+  item(std::string nameIn) {name = nameIn;}
+  void setName(std::string nameIn) {name = nameIn;}
+  std::string getName() {return name;}
+
+  void setResetType(bool) {}
+  bool getResetType() {return false;}
+  void setAttribute(int) {}
+  int getAttribute() {return 0;}
+  void setIncrease(int) {}
+  int getIncrease() {return 0;}
 };
 
 #endif

@@ -11,11 +11,11 @@
 #include "gameTitle.h"
 #include "generation.h"
 #include "goblin.h"
+#include "inventoryselect.h"
 #include "item.h"
 #include "player.h"
 #include "potion.h"
 #include "printCentred.h"
-#include "inventoryselect.h"
 
 void Battle(Player* player, Goblin* goblin) {
   // records wheter a valid input has been given
@@ -30,10 +30,10 @@ void Battle(Player* player, Goblin* goblin) {
   int damage = 0;
   // battle_running will break th while loop if an end of battle condition is
   // met
-  bool battle_running = true;
+  bool battleRunning = true;
 
   // while battle_running is true
-  while (battle_running == true) {
+  while (battleRunning == true) {
     // imports players name and game session from player vaiable
     std::string gameSession = player->getGameSession();
     std::string userName = player->getName();
@@ -62,10 +62,10 @@ void Battle(Player* player, Goblin* goblin) {
 
       // Prints health bars
       std::cout << userName << ":";
-      player->display_Health();
+      player->displayHealth();
       std::cout << std::endl;
       std::cout << enemyName << " the Goblin:";
-      goblin->display_Health();
+      goblin->displayHealth();
       std::cout << std::endl;
 
       // Prints possible options
@@ -75,7 +75,7 @@ void Battle(Player* player, Goblin* goblin) {
       std::cout << "3. Light Melee\n";
       std::cout << "4. Block\n";
       std::cout << "5. Use Item\n";
-      std::cout << "\nWhat will you do?\n";
+      std::cout << "\nWhat will you do? enter number: \n";
 
       // USER ATTACK
       // if the player used a heavy attack last time
@@ -86,7 +86,19 @@ void Battle(Player* player, Goblin* goblin) {
         // if else
       } else {
         // retrieves the move the user wants to use
-        std::cin >> moveInput;
+        int moveInput = 0;
+        int pathChoice = 0;
+        std::string choiceIn;
+        int result = 0;
+        while (result == 0) {
+          std::cin >> choiceIn;
+          result = choiceUpToSix(choiceIn, 5);
+          if (choiceUpToSix(choiceIn, 5) == 0) {
+            std::cout << "invalid input" << std::endl;
+            result = 0;
+          }
+          moveInput = (choiceUpToSix(choiceIn, 5));
+        }
         // if moveInput is...
         switch (moveInput) {
           // 1, then it's a Heavy Melee
@@ -94,7 +106,7 @@ void Battle(Player* player, Goblin* goblin) {
             std::cout << "\n" << userName << " used Heavy Melee!\n";
             std::cout << userName << " feels week and needs to rest\n";
             // damage dealt is equal to their strength
-            player->playerattack(goblin, player->getStrength());
+            player->playerAttack(goblin, player->getStrength());
             usedHeavy = true;
             correctInput = true;
             break;
@@ -102,24 +114,24 @@ void Battle(Player* player, Goblin* goblin) {
           case 2:
             std::cout << "\n" << userName << " cast a spell!\n";
             // damage dealt is equal to their mana
-            player->playerattack(goblin, player->getMana());
+            player->playerAttack(goblin, player->getMana());
             correctInput = true;
             break;
           // 3, then it's a light Melee
           case 3:
             std::cout << "\n" << userName << " used light Melee!\n";
             // damaged dealt is half the players strength
-            player->playerattack(goblin, player->getStrength() / 2);
+            player->playerAttack(goblin, player->getStrength() / 2);
             correctInput = true;
             break;
-            // 4, then it's a block
+          // 4, then it's a block
           case 4:
 
             std::cout << "\n" << userName << " blocked their opponent!\n";
             correctInput = true;
             blocked = true;
             break;
-
+          // open inventory
           case 5:
             std::cout << "\n" << userName << " reaches into their pouch...\n ";
             correctInput = true;
@@ -131,10 +143,10 @@ void Battle(Player* player, Goblin* goblin) {
             break;
         }
         if (goblin->getIsAlive() == false) {
-          battle_running = false;
+          battleRunning = false;
         }
         if (player->getIsAlive() == false) {
-          battle_running = false;
+          battleRunning = false;
         }
       }
 
@@ -143,17 +155,20 @@ void Battle(Player* player, Goblin* goblin) {
         if (blocked == true) {
           std::cout << "The goblin was blocked!! \n";
         } else {
-          damage = goblin->enemy_attack();
+          damage = goblin->enemyAttack();
           player->playerTakeDamage(damage);
         }
       }
       if (goblin->getIsAlive() == false) {
-        battle_running = false;
+        battleRunning = false;
       }
       if (player->getIsAlive() == false) {
-        battle_running = false;
+        battleRunning = false;
       }
     }
+    // The program will be stopped for the time set by delay in ms
+    std::this_thread::sleep_for(std::chrono::milliseconds(20));
+
     // user is prompted to press enter to continue
     std::cout << "\n";
     std::cout << "- Press Enter to Continue -\n";
