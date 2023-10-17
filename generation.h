@@ -74,17 +74,17 @@ int choiceUpToSix(std::string choiceIn, int amountOfChoices) { //input a string 
 
 int createAndReturnPaths() { //creates and displays a map then returns the path that the play wants to go down for the encounter function
   srand(time(0));
-  int path1 = std::rand() % 4;
-  int path2 = std::rand() % 4;
-  int path3 = std::rand() % 4;
+  int path1 = std::rand() % 5;
+  int path2 = std::rand() % 5;
+  int path3 = std::rand() % 5;
 
-  if (path1 >= 2 ) {    //check if more then 2 if it is it sets the path to 2 which is an item encounter
+  if (path1 == 2 || path1 == 3 || path1 == 4) {    //check if more then 2 if it is it sets the path to 2 which is an item encounter
     path1 = 2;
   }
-  if (path2 >= 2) {
+  if (path2 >= 2 || path2 == 3 || path2 == 4) {
     path2 = 2;
   }
-  if (path3 >= 2) {
+  if (path3 >= 2 || path3 == 3 || path3 == 4) {
     path3 = 2;
   }
 
