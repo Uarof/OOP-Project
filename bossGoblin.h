@@ -1,3 +1,7 @@
+//this file contains the boss goblin class which is called on the last level of the game,
+//bossgoblin enemyAttack function is a example of polymorphism in the program 
+//this class is lvl 3 inheritance of the Character class
+
 #ifndef BOSSGOBLIN_H
 #define BOSSGOBLIN_H
 

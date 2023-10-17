@@ -1,9 +1,9 @@
+//this file contains the 'map' generation functions and a choiceUpToSix function that stops wrong inputs
 #include <iostream>
 #ifndef GENERATION_H
 #define GENERATION_H
 
-void displayMap(int path1, int path2,
-                int path3) {  // takes 3 inputs and displays 3 path choices
+void displayMap(int path1, int path2, int path3) {  // takes 3 inputs and displays 3 path choices
   std::cout << path1 << "    " << path2 << "    " << path3 << std::endl;
   std::cout << " \\   |   /" << std::endl;
   std::cout << "  \\  |  /" << std::endl;
@@ -39,8 +39,8 @@ void pathNumberToString(int path) {  // this is the key translating an int into 
   }  // switch statement produces the UI do determine
 }
 
-int choiceUpToSix(std::string choiceIn, int amountOfChoices) {
-  int output = 0;
+int choiceUpToSix(std::string choiceIn, int amountOfChoices) { //input a string and convert to a char based on how many choices you need 
+  int output = 0;                                              //useful so the program dosent break when char is inputed when the program expects a int
   char charChoice;               // define char variable
   charChoice = choiceIn.at(0);  // takes first char of the string and runs
   switch (charChoice) {
@@ -72,7 +72,7 @@ int choiceUpToSix(std::string choiceIn, int amountOfChoices) {
   return output;
 }
 
-int createAndReturnPaths() {
+int createAndReturnPaths() { //creates and displays a map then returns the path that the play wants to go down for the encounter function
   srand(time(0));
   int path1 = std::rand() % 4;
   int path2 = std::rand() % 4;

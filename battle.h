@@ -1,3 +1,6 @@
+// this file contains all the battle UI and functionality of a battle encounter
+
+
 #ifndef BATTLE_H
 #define BATTLE_H
 

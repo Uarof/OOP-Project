@@ -1,3 +1,4 @@
+//intro function is mainly UI but also takes user input to determine the player name and tpye 
 #ifndef INTRO_H
 #define INTRO_H
 
@@ -113,7 +114,7 @@ std::string* gameIntro() {
     // j is a counter for the number of characters printed in a line
     int j = 0;
     // delay sets the time in ms for the print delay
-    int delay = 0;
+    int delay = 0.5;
 
     // for i (character number in prologue) is less than the total number
     // of characeters in prologue

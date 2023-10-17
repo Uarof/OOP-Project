@@ -1,3 +1,4 @@
+//this item class is our abstract class 
 #ifndef ITEM_H
 #define ITEM_H
 

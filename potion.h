@@ -1,3 +1,4 @@
+// 2nd lvl inhertance from item class
 #ifndef POTION_H
 #define POTION_H
 

@@ -1,3 +1,5 @@
+//all class's and their funtions are tested in this file 
+//the class called 'Test' contains void functions in protected that test each funtionality of the funtions within it
 #include "files.h"
 
 class Test {
@@ -77,26 +79,23 @@ class Test {
 
   void testGoblin() {
     std::cout << "this is the test for the Goblin class" << std::endl;
-
-
-            Goblin Goblin(5);
+    Goblin Goblin(5);
       if (Goblin.getLevel() != 5) {
         std::cout << "test 1 failed" << std::endl;
       }
-     if (Goblin.getHealth() != (2 * 5 + 1)) {
+      if (Goblin.getHealth() != ((2 * 5 + 1))) {
         std::cout << "test 2 failed" << std::endl;
       }
-
       if (Goblin.getHealthCurrent() != (2 * 5 + 1)) {
         std::cout << "test 3 failed" << std::endl;
       }
-            if (Goblin.getStrength() != (2 * 5 + 1)) {
+      if (Goblin.getStrength() != (2 * 5 + 1)) {
         std::cout << "test 4 failed" << std::endl;
       }
-            if (Goblin.getMana() != (2 * 5 + 1)) {
+      if (Goblin.getMana() != (2 * 5 + 1)) {
         std::cout << "test 5 failed" << std::endl;
       }
-            if (Goblin.getLuck() != (2 * 5 + 1)) {
+      if (Goblin.getLuck() != (2 * 5 + 1)) {
         std::cout << "test 6 failed" << std::endl;
       }
       if (Goblin.getIsAlive() != true) {
@@ -125,11 +124,10 @@ class Test {
       if (BossGoblin.getMana() != (10)) {
         std::cout << "test 5 failed" << std::endl;
       }
-            if (BossGoblin.getDebuffDamage() != (10)) {
+            if (BossGoblin.getLuck() != (10)) {
         std::cout << "test 6 failed" << std::endl;
       }
-
-      if (BossGoblin.getLuck() != round(BossGoblin.getStrength() / 10)) {
+      if (BossGoblin.getDebuffDamage() != round(BossGoblin.getStrength() / 10)) {
         std::cout << "test 7 failed" << std::endl;
       }
       if (BossGoblin.getIsAlive() != true) {
@@ -141,12 +139,12 @@ class Test {
   }
 
   void TestPotions() {
-    std::cout << "this is the test for the Goblin class" << std::endl;
+    std::cout << "this is the test for the Potion class" << std::endl;
       potion potion(0, 2, 5);
       if (potion.getResetType() != 0) {
         std::cout << "test 1 failed" << std::endl;
       }
-      if (potion.getResetType() != 2) {
+      if (potion.getAttribute() != 2) {
         std::cout << "test 2 failed" << std::endl;
       }
       if (potion.getIncrease() != 5) {

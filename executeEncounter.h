@@ -1,3 +1,4 @@
+//This file contains a switch statement which based on a player input (carries in from main) executes an encouter 
 #ifndef EXECUTEENCOUNTER_H
 #define EXECUTEENCOUNTER_H
 

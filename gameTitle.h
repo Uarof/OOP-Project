@@ -1,3 +1,6 @@
+//game title graphic function
+//called on almost every new screen
+
 #ifndef GAMETITLE_H
 #define GAMETITLE_H
 

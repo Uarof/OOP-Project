@@ -1,3 +1,4 @@
+//inventory UI and functionality
 #ifndef INVENTORYSELECT_H
 #define INVENTORYSELECT_H
 
@@ -16,7 +17,7 @@
 #include "potion.h"
 #include "printCentred.h"
 
-void printInventory(Player* player) {
+void printInventory(Player* player) { //prints the in UI
   std::string selectedItem;
   int result = 0;
   item* inven = player->getInventory();
@@ -39,10 +40,10 @@ void printInventory(Player* player) {
   result -= 1;
   itemChoice = inven[result];
   
-  if (itemChoice.getResetType() == false && itemChoice.getAttribute() == 0) {
-    player->setHealthCurrent(player->getHealth());
+  if (itemChoice.getResetType() == false && itemChoice.getAttribute() == 0) { //selcet and consume a potion 
+    player->setHealthCurrent(player->getHealth()); //reset the current health to max health (full heal)
   } else {
-    int Att = itemChoice.getAttribute();
+    int Att = itemChoice.getAttribute(); //finds attribute and assigns a incrase tipe based on the attribute
     switch(Att) {
       case 0:
         std::cout << player->getHealth();

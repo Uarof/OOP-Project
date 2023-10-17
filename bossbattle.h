@@ -1,3 +1,6 @@
+// this file contains the battle UI and functionality the the special encounter for the boss case.
+
+
 #ifndef BOSSBATTLE_H
 #define BOSSBATTLE_H
 

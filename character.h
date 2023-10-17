@@ -1,3 +1,5 @@
+//this is the Character and is at the top of one of the hierarchys
+//contains all the vital functions for Player, Goblin and Bossgoblin 
 #ifndef CHARACTER_H
 #define CHARACTER_H
 

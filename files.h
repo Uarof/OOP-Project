@@ -1,3 +1,4 @@
+//this header file contains all our header files so main.cpp looks cleaner
 #ifndef FILES_H
 #define FILES_H
 

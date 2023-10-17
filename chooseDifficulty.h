@@ -1,3 +1,7 @@
+//this file contains the chooseDifficulty function which takes a player input to set the length of the dungeon
+// 1 or easy makes the length = 5 
+// 2 or medium makes the length = 10
+// 3 or hard makes the length = 15
 #ifndef CHOOSEDIFFICULTY_H
 #define CHOOSEDIFFICULTY_H
 

@@ -1,3 +1,4 @@
+//function to print any text centered in the terminal
 #ifndef PRINTCENTRED_H
 #define PRINTCENTRED_H
 

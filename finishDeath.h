@@ -1,3 +1,6 @@
+//This funtion contains the functions that display the win screen finishScreen or you loose screen
+//These functions are called in main when the win or loss conditions are met
+
 #ifndef FINISHDEATH_H
 #define FINISHDEATH_H
 
